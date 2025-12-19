@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Member Dashboard - Gym Management</title>
+  <link rel="stylesheet" href="./css/styles.css" />
+</head>
+<body>
+  <div class="app-container">
+    <header class="app-header">
+      <h1>Member Dashboard</h1>
+      <button id="logoutBtn" class="btn danger">Logout</button>
+    </header>
+
+    <main class="content">
+      <section class="card">
+        <h2>Your Bills</h2>
+        <table class="table" id="memberBillsTable">
+          <thead>
+            <tr>
+              <th>Amount</th>
+              <th>Due Date</th>
+              <th>Status</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody><!-- filled by JS --></tbody>
+        </table>
+      </section>
+
+      <section class="card mt-2">
+        <h2>Notifications</h2>
+        <ul id="memberNotifications" class="simple-list"><!-- filled by JS --></ul>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="./js/member.js"></script>
+</body>
+</html>

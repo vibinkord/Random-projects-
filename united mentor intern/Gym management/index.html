@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Gym Management — Sign in</title>
+  <link rel="stylesheet" href="./css/styles.css" />
+</head>
+<body>
+  <main class="social-login-page">
+    <div class="card auth-card">
+      <div class="brand-block">
+        <div class="brand-logo">🏋️‍♀️</div>
+        <h1>Gym Management</h1>
+        <p class="muted">Sign in to manage members, bills & notifications</p>
+      </div>
+
+      <form id="loginForm" class="login-form" autocomplete="on" novalidate>
+        <input id="roleDisplay" type="hidden" value="member" />
+
+        <div class="input-row">
+          <label class="sr-only" for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="Email" required />
+        </div>
+
+        <div class="input-row">
+          <label class="sr-only" for="password">Password</label>
+          <input id="password" name="password" type="password" placeholder="Password" required />
+        </div>
+
+        <button type="submit" class="btn primary full">Log in</button>
+
+        <div class="divider"><span>or</span></div>
+
+        <div class="social-row">
+          <button class="btn social fb" type="button" id="fbBtn" aria-label="Continue with Facebook">
+            <span class="social-icon">f</span> Continue with Facebook
+          </button>
+
+          <button class="btn social ig" type="button" id="igBtn" aria-label="Continue with Instagram">
+            <span class="social-icon">✦</span> Continue with Instagram
+          </button>
+        </div>
+
+        <div class="help muted mt-1">Demo accounts: <strong>admin@gym.com / password</strong>, <strong>member@gym.com / password</strong></div>
+
+        <div id="loginMessage" class="message mt-1" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+
+    <p class="footer muted">© 2025 Gym Management System (Local Demo)</p>
+  </main>
+
+  <script type="module" src="./js/auth.js"></script>
+
+
+</body>
+</html>

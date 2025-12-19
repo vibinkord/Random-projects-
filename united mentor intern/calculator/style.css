@@ -1,0 +1,143 @@
+/* Base theme variables */
+:root {
+  --bg: #0f172a;            /* slate-900 */
+  --bg-grad: radial-gradient(1200px 600px at 10% 10%, #0f172a 10%, #111827 60%, #0b1220 100%);
+  --surface: #111827;       /* gray-900 */
+  --surface-2: #0b1220;     
+  --text: #e5e7eb;          /* gray-200 */
+  --muted: #9ca3af;         /* gray-400 */
+  --border: #1f2937;        /* gray-800 */
+  --btn: #1f2937;           /* gray-800 */
+  --btn-hover: #374151;     /* gray-700 */
+  --focus: #93c5fd;         /* blue-300 */
+  --operator: #3b82f6;      /* blue-500 */
+  --operator-hover: #2563eb;/* blue-600 */
+  --equal: #10b981;         /* emerald-500 */
+  --equal-hover: #059669;   /* emerald-600 */
+  --danger: #ef4444;        /* red-500 */
+  --danger-hover: #dc2626;  /* red-600 */
+  --radius: 16px;
+  --shadow: 0 12px 30px rgba(0,0,0,0.35), 0 2px 8px rgba(0,0,0,0.25);
+}
+
+/* Layout */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  background: var(--bg-grad);
+  color: var(--text);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+.calculator {
+  width: 320px;
+  background: linear-gradient(180deg, var(--surface) 0%, var(--surface-2) 100%);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 18px;
+}
+
+.title {
+  margin: 0 0 10px;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--muted);
+  letter-spacing: 0.2px;
+}
+
+.display-wrap {
+  position: relative;
+}
+
+#display {
+  width: 100%;
+  height: 64px;
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  margin: 0 0 14px;
+  text-align: right;
+  padding: 14px 14px;
+  background: #0a1220;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) - 6px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+button {
+  appearance: none;
+  padding: 18px;
+  font-size: 18px;
+  font-weight: 600;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: linear-gradient(180deg, var(--btn) 0%, #1b2431 100%);
+  color: var(--text);
+  cursor: pointer;
+  transition: transform 120ms ease, background 140ms ease, box-shadow 140ms ease, border-color 140ms ease;
+  box-shadow: 0 2px 0 rgba(0,0,0,0.6);
+}
+
+button:hover { 
+  background: linear-gradient(180deg, var(--btn-hover) 0%, #2a3341 100%);
+}
+
+button:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.6);
+}
+
+button:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.operator {
+  background: linear-gradient(180deg, var(--operator) 0%, #1d4ed8 100%);
+  color: #fff;
+  border-color: #1e40af;
+}
+
+.operator:hover {
+  background: linear-gradient(180deg, var(--operator-hover) 0%, #1e3a8a 100%);
+}
+
+.equal {
+  background: linear-gradient(180deg, var(--equal) 0%, #047857 100%);
+  color: #fff;
+  border-color: #065f46;
+  grid-column: span 2;
+}
+
+.equal:hover { background: linear-gradient(180deg, var(--equal-hover) 0%, #065f46 100%); }
+
+.clear {
+  background: linear-gradient(180deg, var(--danger) 0%, #b91c1c 100%);
+  color: #fff;
+  border-color: #7f1d1d;
+}
+
+.clear:hover { background: linear-gradient(180deg, var(--danger-hover) 0%, #7f1d1d 100%); }
+
+/* Small screens */
+@media (max-width: 380px) {
+  .calculator { width: 94vw; padding: 16px; }
+  #display { height: 60px; font-size: 26px; }
+  button { padding: 16px; font-size: 17px; }
+}
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  button { transition: none; }
+}

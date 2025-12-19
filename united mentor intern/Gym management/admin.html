@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Admin Dashboard - Gym Management</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="./css/styles.css" />
+</head>
+<body>
+  <div class="page">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="brand">
+          <div class="logo">🏋️‍♂️</div>
+          <div class="brand-text">
+            <h1>Gym Management</h1>
+            <p class="muted">Admin Dashboard</p>
+          </div>
+        </div>
+
+        <div class="top-actions">
+          <button id="themeToggle" class="btn small ghost" aria-pressed="false">🌙</button>
+          <button id="logoutBtnTop" class="btn small danger">Logout</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-top">
+          <strong>Admin</strong>
+          <button id="sidebarToggle" class="btn tiny" aria-label="Toggle menu">☰</button>
+        </div>
+
+        <!-- Main nav; tidy & grouped -->
+        <nav class="nav" role="navigation" aria-label="Admin sections">
+          <button class="nav-btn" data-section="members">Members</button>
+          <button class="nav-btn" data-section="bills">Create Bills</button>
+          <button class="nav-btn" data-section="notifications">Notifications</button>
+          <button class="nav-btn" data-section="reports">Reports</button>
+          <button class="nav-btn" data-section="supplements">Supplement Store</button>
+          <button class="nav-btn" data-section="diet">Diet Details</button>
+        </nav>
+      </aside>
+
+      <main class="main">
+        <!-- Grid of two columns inside each section for good alignment -->
+        <section id="section-members" class="section active">
+          <div class="section-grid">
+            <div class="card panel">
+              <h2>Manage Members</h2>
+
+              <form id="addMemberForm" class="form-compact">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="memberName">Name</label>
+                    <input id="memberName" placeholder="Full name" />
+                  </div>
+                  <div class="form-group">
+                    <label for="memberEmail">Email</label>
+                    <input id="memberEmail" type="email" placeholder="member@example.com" />
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="memberPhone">Phone</label>
+                    <input id="memberPhone" placeholder="+91xxxxxxxxxx" />
+                  </div>
+                  <div class="form-group">
+                    <label for="memberPackage">Package</label>
+                    <select id="memberPackage">
+                      <option value="monthly">Monthly</option>
+                      <option value="quarterly">Quarterly</option>
+                      <option value="yearly">Yearly</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-actions">
+                  <button type="submit" class="btn primary">Save Member</button>
+                  <div id="memberFormMessage" class="message"></div>
+                </div>
+              </form>
+            </div>
+
+            <div class="card panel">
+              <h2>Members List</h2>
+              <div class="table-responsive">
+                <table class="table" id="membersTable">
+                  <thead>
+                    <tr><th>Name</th><th>Email</th><th>Phone</th><th>Package</th><th style="width:120px">Actions</th></tr>
+                  </thead>
+                  <tbody><!-- filled by JS --></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="section-bills" class="section">
+          <div class="section-grid single">
+            <div class="card panel">
+              <h2>Create Bill</h2>
+              <form id="createBillForm" class="form-compact">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="billMemberEmail">Member Email</label>
+                    <input id="billMemberEmail" type="email" placeholder="member@example.com" />
+                  </div>
+                  <div class="form-group">
+                    <label for="billAmount">Amount</label>
+                    <input id="billAmount" type="number" min="0" placeholder="₹ 0.00" />
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="billDueDate">Due Date</label>
+                    <input id="billDueDate" type="date" />
+                  </div>
+                  <div class="form-group">
+                    <label for="billNotes">Notes</label>
+                    <input id="billNotes" placeholder="Optional notes" />
+                  </div>
+                </div>
+
+                <div class="form-actions">
+                  <button type="submit" class="btn primary">Create Bill</button>
+                  <div id="billFormMessage" class="message"></div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <section id="section-notifications" class="section">
+          <div class="section-grid single">
+            <div class="card panel">
+              <h2>Monthly Notifications</h2>
+              <form id="notificationForm" class="form-compact">
+                <div class="form-group">
+                  <label for="notificationMessage">Message</label>
+                  <textarea id="notificationMessage" rows="4">Your monthly gym fee is due. Please make the payment to continue services.</textarea>
+                </div>
+                <div class="form-actions">
+                  <button class="btn primary" type="submit">Send to Members</button>
+                  <div id="notificationMessageStatus" class="message"></div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <section id="section-reports" class="section">
+          <div class="section-grid single">
+            <div class="card panel">
+              <h2>Reports</h2>
+              <p class="muted">Export data for offline analysis</p>
+              <div class="row" style="gap:.6rem; margin-top:.6rem;">
+                <button id="exportMembersBtn" class="btn primary">Export Members CSV</button>
+                <button id="exportBillsBtn" class="btn primary">Export Bills CSV</button>
+                <div id="reportMessage" class="message"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="section-supplements" class="section">
+          <div class="section-grid single">
+            <div class="card panel">
+              <h2>Supplement Store</h2>
+              <ul id="supplementList" class="simple-list"></ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="section-diet" class="section">
+          <div class="section-grid single">
+            <div class="card panel">
+              <h2>Diet Details</h2>
+              <div id="dietPlans"></div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+
+    <footer class="footer">
+      <div class="muted">© 2025 Gym Management System</div>
+    </footer>
+  </div>
+
+  <!-- Keep main logic; UI helpers loaded after -->
+  <script type="module" src="./js/admin-ui.js"></script>
+  <script type="module" src="./js/admin.js"></script>
+</body>
+</html>

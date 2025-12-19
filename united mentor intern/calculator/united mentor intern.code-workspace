@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../intern/PORTFOLLIO"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "united mentor intern"
+	}
+}
