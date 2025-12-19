@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .container {
+      max-width: 900px;
+      margin: 20px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.1);
+    }
+    h1, h2 {
+      color: #007bff;
+    }
+    .logout {
+      float: right;
+      font-weight: bold;
+      cursor: pointer;
+      color: #007bff;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+    }
+    button {
+      background-color: #007bff;
+      border: none;
+      padding: 6px 12px;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .form-group {
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div>
+      <span class="logout" onclick="window.location.href='index.html'">Logout</span>
+      <h1>Welcome, Admin</h1>
+    </div>
+
+    <h2>Manage Students</h2>
+    <form id="addStudentForm" style="margin: 12px 0 18px 0;">
+      <div class="form-group">
+        <label for="studentName">Name</label><br/>
+        <input type="text" id="studentName" placeholder="Enter full name" required style="width:100%;padding:10px;border:1px solid #ddd;border-radius:6px;" />
+      </div>
+      <div class="form-group">
+        <label for="studentEmail">Email</label><br/>
+        <input type="email" id="studentEmail" placeholder="name@example.com" required style="width:100%;padding:10px;border:1px solid #ddd;border-radius:6px;" />
+      </div>
+      <button type="submit">Add Student</button>
+    </form>
+    <table>
+      <tr><th>Name</th><th>Email</th><th>Action</th></tr>
+      <tr><td>John Doe</td><td>john@example.com</td><td><button onclick="alert('Deleted')">Delete</button></td></tr>
+      <tr><td>Jane Smith</td><td>jane@example.com</td><td><button onclick="alert('Deleted')">Delete</button></td></tr>
+      <tr><td>Michael Lee</td><td>michael@example.com</td><td><button onclick="alert('Deleted')">Delete</button></td></tr>
+    </table>
+
+    <h2>Attendance Management</h2>
+    <table>
+      <tr><th>Student</th><th>Date</th><th>Status</th><th>Update</th></tr>
+      <tr><td>John Doe</td><td>2025-09-01</td><td>Present</td><td><button onclick="alert('Status updated')">Mark Absent</button></td></tr>
+      <tr><td>Jane Smith</td><td>2025-09-01</td><td>Absent</td><td><button onclick="alert('Status updated')">Mark Present</button></td></tr>
+    </table>
+
+    <h2>Marks Management</h2>
+    <table>
+      <tr><th>Student</th><th>Subject</th><th>Marks</th><th>Update</th></tr>
+      <tr><td>John Doe</td><td>Mathematics</td><td>85</td><td><button onclick="alert('Marks updated')">Update</button></td></tr>
+      <tr><td>Jane Smith</td><td>History</td><td>90</td><td><button onclick="alert('Marks updated')">Update</button></td></tr>
+    </table>
+  </div>
+  <script>
+    (function(){
+      const form = document.getElementById('addStudentForm');
+      const nameInput = document.getElementById('studentName');
+      const emailInput = document.getElementById('studentEmail');
+      const tables = document.getElementsByTagName('table');
+      // First table under Manage Students
+      const studentsTable = tables[0];
+
+      function createDeleteButton() {
+        const btn = document.createElement('button');
+        btn.textContent = 'Delete';
+        btn.addEventListener('click', function(){
+          const row = this.closest('tr');
+          if(row) row.remove();
+        });
+        return btn;
+      }
+
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        const name = nameInput.value.trim();
+        const email = emailInput.value.trim();
+        if(!name || !email) return;
+
+        const tr = document.createElement('tr');
+        const tdName = document.createElement('td');
+        const tdEmail = document.createElement('td');
+        const tdAction = document.createElement('td');
+
+        tdName.textContent = name;
+        tdEmail.textContent = email;
+        tdAction.appendChild(createDeleteButton());
+
+        tr.appendChild(tdName);
+        tr.appendChild(tdEmail);
+        tr.appendChild(tdAction);
+
+        studentsTable.appendChild(tr);
+
+        form.reset();
+        nameInput.focus();
+      });
+    })();
+  </script>
+</body>
+</html>

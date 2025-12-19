@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LOGIN</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+      }
+      .login {
+        border: 1px solid black;
+        width: 90%;
+        max-width: 400px;
+        height: 500px;
+        background: fixed;
+        background-image: "add image";
+        background-position-x: center;
+        border-radius: 20px;
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.75);
+        background-size: cover;
+        background-position: center;
+        overflow: hidden;
+        margin-top: 70px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      form {
+        display: block;
+        box-sizing: border-box;
+        padding: 40px;
+        background-position-x: center;
+        align-content: center;
+        width: 100%;
+        height: 100%;
+        backdrop-filter: brightness(40%);
+        flex-direction: column;
+        display: flex;
+        gap: 5px;
+      }
+      h1 {
+        font-weight: normal;
+        font-size: 24px;
+        text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.5);
+        margin-bottom: 60px;
+      }
+      label {
+        color: rgba(0, 0, 0, 0.8);
+        text-transform: uppercase;
+        font-size: 10px;
+        letter-spacing: 2px;
+        padding-left: 10px;
+      }
+      input,
+      select {
+        background: rgb(255, 255, 255);
+        height: 40px;
+        line-height: 40px;
+        border-radius: 20px;
+        padding: 0px 20px;
+        border: none;
+        margin-bottom: 20px;
+        color: rgb(0, 0, 0);
+      }
+      .forgot-password {
+        color: rgba(0, 0, 0, 0.8);
+        font-size: 10px;
+        text-transform: uppercase;
+        text-align: right;
+        margin-bottom: 20px;
+        text-decoration: none;
+      }
+      .forgot-password:hover {
+        text-decoration: underline;
+      }
+      button {
+        background: rgb(45, 126, 231);
+        height: 40px;
+        line-height: 40px;
+        border-radius: 40px;
+        border: none;
+        margin: 10px 0px;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+        color: white;
+        background: rgb(80, 237, 80);
+        font-size: 12px;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+      .scroll {
+        width: 100%;
+        height: 50px;
+        background: rgb(80, 237, 80);
+        margin-top: 0;
+      }
+      .logo {
+        width: 600px;
+        height: 83px;
+        background-image: url(slider_dots-main/img/logo1.png);
+        background-repeat: no-repeat;
+        background-color: aqua;
+        margin-left: 25%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="scroll">
+        <h1 style="text-align: center">TASK MANAGEMENT SYSTEM</h1>
+      </div>
+      <div class="top">
+        <div class="logo"></div>
+        <div class="dropdown"></div>
+      </div>
+      <div class="login">
+        <form>
+          <h1>LOGIN</h1>
+          <label for="user-name">User Name</label>
+          <select id="user-name" name="user-name">
+            <option value="Electrical">Electrical</option>
+            <option value="Fan">Fan</option>
+            <option value="Light">Light</option>
+            <option value="Projector">Projector</option>
+            <option value="Sanitary">Sanitary</option>
+            <option value="Washroom">Washroom</option>
+            <option value="Water">Water</option>
+            <option value="Faculty">Faculty</option>
+          </select>
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Enter Password"
+            autocomplete="off"
+          />
+          <a href="#" class="forgot-password">Forgot Password?</a>
+          <button type="button" onclick="redirectToHomePage()">SIGN IN</button>
+        </form>
+      </div>
+      <script>
+        function redirectToHomePage() {
+          const username = document.getElementById("user-name").value;
+          const password = document.getElementById("password").value;
+
+          const credentials = {
+            Electrical: "1234",
+            Fan: "1234",
+            Light: "1234",
+            Projector: "1234",
+            Sanitary: "1234",
+            Washroom: "1234",
+            Water: "1234",
+            Faculty: "1234",
+          };
+
+          if (credentials[username] === password) {
+            window.location.href = `issues/${username}.html`;
+          } else {
+            alert("Invalid username or password");
+          }
+        }
+      </script>
+    </div>
+  </body>
+</html>

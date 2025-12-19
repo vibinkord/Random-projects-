@@ -1,0 +1,37 @@
+What is Ajax?
+Ajax is an acronym for Asynchronous Javascript and XML. 
+It is used to communicate with the server without refreshing the web page and
+ thus increasing the user experience and better performance.
+
+
+Ajax allows web pages to be updated asynchronously by exchanging small amounts of
+ data with the server behind the scenes. 
+
+BENEFITS OF USING AJAX:
+
+XMLHttpRequest:
+
+XMLHttpRequest is a request type widely used for sending a request to Ajax pages. 
+You can also call it with a different name: Asynchronous HTTP request.
+ It plays a vital role in the implementation of Ajax techniques for web development.
+
+Enable asynchronous calls:
+
+Ajax allows its users to make asynchronous calls to the web server without reloading the whole web page. 
+As a web visitor, you don’t have to wait for the entire page to load entirely in order to access the entire page content.
+
+
+Reduce server traffic and increase speed:
+
+The first and foremost advantage of Ajax is its ability to improve the performance
+ and usability of web applications.
+
+Reduce bandwidth usage:
+
+One more advantage of Ajax comes from the bandwidth usage. This action is 
+effective in improving web performance and load speed as well.
+
+Improved Response Time:
+Asynchronous requests mean faster data retrieval.
+Users see immediate updates without waiting for full page reloads
+

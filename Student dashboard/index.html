@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login - Student/Admin Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="login-container">
+    <h2>Dashboard Login</h2>
+    <form id="loginForm">
+      <label for="userType">Login As:</label>
+      <select id="userType" required>
+        <option value="" disabled selected>Select User Type</option>
+        <option value="student">Student</option>
+        <option value="admin">Admin</option>
+      </select>
+      <label for="email">Email:</label>
+      <input type="email" id="email" required />
+      <label for="password">Password:</label>
+      <input type="password" id="password" required />
+      <button type="submit">Login</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const userType = document.getElementById('userType').value;
+      if(userType === 'student'){
+        window.location.href = 'student-dashboard.html';
+      } else if(userType === 'admin'){
+        window.location.href = 'admin-dashboard.html';
+      } else {
+        alert('Please select a user type');
+      }
+    });
+  </script>
+</body>
+</html>
