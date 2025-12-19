@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      div {
+        width: 200px;
+        height: 20px;
+        padding: 240px;
+        padding-left: 570px;
+      }
+      form {
+        border: 1px solid black;
+        border-radius: 10px;
+        padding: 15px;
+        height: 320px;
+        width: 400px;
+        font-size: large;
+        font-weight: 900;
+      }
+      textarea {
+        width: 70%;
+        height: 50%;
+      }
+      button {
+        margin-left: 75%;
+        background-color: green;
+        width: 25%;
+        height: 15%;
+        font-family: "Times New Roman", Times, serif;
+        font-size: medium;
+      }
+    </style>
+  </head>
+  <body>
+    <button onclick="window.location.href='../index.html'">
+      Go to Homepage
+    </button>
+    <div>
+      <form onsubmit="submitForm(event)">
+        <label for="name">FACULTY REPORT:</label><br />
+        <br /><label for="name">NAME: XXXXX</label>
+        <p>CONTACT: xxxxx-xxxxx</p>
+        <textarea id="query" placeholder="ENTER YOUR COMMENT HERE"></textarea
+        ><br />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+    <script src="js/app.js"></script>
+  </body>
+</html>

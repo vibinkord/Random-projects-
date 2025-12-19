@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+</style>
+    
+</head>
+<body>
+    <header class="header">
+        <div class="logo">TASK MANAGEMENT</div>
+        <nav class="navbar">
+            <a href="#home">HOME</a>
+            <a href="#contact">COMPLAINTS</a>
+            <a href="#">CONTACT</a>
+            <a href="#">ABOUT US</a>
+        </nav>
+        
+    </header>
+    <section id="home">
+        <p><span>Task Management for a college encompasses swift resolution strategies for various issues like electrical and water problems, 
+            ensuring uninterrupted campus operations. With a dedicated team, we promptly address electrical faults, minimizing disruptions to academic activities and student life.
+            Water-related issues such as leaks or supply interruptions are swiftly identified and rectified to maintain a comfortable and safe environment for students and staff. 
+            Our proactive approach involves regular inspections and maintenance to prevent potential problems before they arise. 
+            Through efficient problem management, we prioritize the well-being and seamless functioning of our college community, fostering a conducive learning environment.</span></p>
+    </section>
+    <section id="contact">
+        <h2>Contact Us for Complaints</h2>
+        <form action="submit_complaint.php" method="post">
+            <input type="checkbox" id="water" name="complaint[]" value="Water Complaint">
+            <label for="water">Water Complaint</label><br>
+            <input type="checkbox" id="food" name="complaint[]" value="Food Complaint">
+            <label for="food">Food Complaint</label><br>
+            <input type="checkbox" id="class" name="complaint[]" value="Class Complaint">
+            <label for="class">Class Complaint</label><br>
+            <input type="checkbox" id="fan" name="complaint[]" value="Fan Problem">
+            <label for="fan">Fan Problem</label><br>
+            <input type="checkbox" id="restroom" name="complaint[]" value="Restroom Complaint">
+            <label for="restroom">Restroom Complaint</label><br>
+            <input type="checkbox" id="hostel" name="complaint[]" value="Hostel Complaint">
+            <label for="hostel">Hostel Complaint</label><br>
+            <input type="checkbox" id="faculty" name="complaint[]" value="Faculty Complaint">
+            <label for="faculty">Faculty Complaint</label><br>
+            <button onclick="redirectToForm()">Go to Complaint Form</button>
+        </form>
+    </section>
+    <div class="container">
+        <h1>Problem Management Dashboard</h1>
+        <ul class="tree">
+            <li>
+                <span class="caret">Problem 1</span>
+                <ul class="nested">
+                    <li>Sub-problem 1.1</li>
+                    <li>Sub-problem 1.2</li>
+                    <li>
+                        <span class="caret">Sub-problem 1.3</span>
+                        <ul class="nested">
+                            <li>Sub-problem 1.3.1</li>
+                            <li>Sub-problem 1.3.2</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <span class="caret">Problem 2</span>
+                <ul class="nested">
+                    <li>Sub-problem 2.1</li>
+                    <li>Sub-problem 2.2</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <section>
+        
+    </section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+    const toggler = document.getElementsByClassName("caret");
+    for (let i = 0; i < toggler.length; i++) {
+        toggler[i].addEventListener("click", function() {
+            this.parentElement.querySelector(".nested").classList.toggle("active");
+            this.classList.toggle("caret-down");
+        });
+    }
+});
+
+        function redirectToForm() {
+            window.location.href = "https://docs.google.com/forms/d/e/1FAIpQLSdEtAXydy-ocim2VzxWTbTbEn-1QQfiKqXbn0BK90yl1qRPPw/viewform";
+        }
+    </script>
+        </body>
+</html>

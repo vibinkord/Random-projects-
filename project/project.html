@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <style>
+    body {
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(to right, rgb(57, 65, 58), rgb(174, 224, 36));
+        /* background-image: url(pagelogo);
+        background-repeat: no-repeat;
+        background-size: 100%;
+        background-position: center; */
+        
+    }
+
+    form {
+        
+        
+        width: 900px;
+        height: 600px;
+        display: flex;
+        flex-direction: column;
+        background: rgba(255, 255, 255, 0.06);
+        box-shadow: 0 8px 32px 0 rgba(251, 251, 252, 0.37);
+        border-radius: 30px;
+        border-left: 1px solid rgba(255, 255, 255, 0.3);
+        border-top: 1px solid rgba(247, 247, 247, 0.3);
+        padding: 10px;
+        background-color: transparent;
+        color: black;
+        background-color: rgba(217, 222, 223, 0.692)  ;
+        
+    }
+
+    h1 {
+        font-size: 50px;
+        text-align: center;
+        color: white;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, .2);
+        letter-spacing: 3px;
+        margin-bottom: 5%;
+        opacity: .7;
+    }
+
+    label {
+        font-size: 20px;
+        color: white;
+        margin-left: 10%;
+        opacity: .8;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, .2);
+    }
+
+    input {
+        width: 80%;
+        height: 20%;
+        margin: 5% auto;
+        margin-bottom: 8%;
+        border: 1px solid rgb(0, 0, 0);
+        outline: invert;
+        background: transparent;
+        color: rgb(0, 0, 0);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        opacity: 8;
+        font-size: large;
+    }
+
+    button {
+        width: 50%;
+        height: 15%;
+        margin: 3% auto;
+        color: rgb(0, 0, 0);
+        font-size: 15px;
+        opacity: .7;
+        background: rgba(255, 255, 255, 0.06);
+        padding: 10px 30px;
+        border: none;
+        outline: none;
+        border-radius: 20px;
+        text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.2);
+        box-shadow: 3px 3px 5px rgba(31, 38, 135, .37);
+        border-left: 1px solid rgba(255, 255, 255, 0.3);
+        border-top: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+   
+    a {
+        font-size: 15px; 
+        text-align: center;
+        color: rgb(0, 0, 0);
+        opacity: .7;
+        text-decoration: none; 
+    }
+
+  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DATABASE</title>
+    
+</head>
+<body>
+    
+    <form id="form1" onsubmit="checkPassword(event)">
+        <h1 style="color: black;">LOGIN</h1>
+        <label style="color: black;">Username</label>
+        <input type="text">
+        <label  style="color: black;">Password</label>
+        <input type="password" id="pass">
+       
+        <button type="submit">Login</button> 
+    </form>
+
+    <script>
+        function checkPassword(event) {
+            event.preventDefault(); 
+
+
+            var password = document.getElementById("pass").value;
+
+            if(password==null){
+              alert('Please enter your username and password');
+            }
+            
+            if (password === "siet") {
+                
+                window.location.href = "PAGE.html";
+            } else {
+                       alert("Incorrect password. Please try again.");
+            }
+        }
+    </script>
+</body>
+</html>

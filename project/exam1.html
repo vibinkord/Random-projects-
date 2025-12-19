@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Indian Language Translator</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Noto+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f8f9fa;
+    }
+    .container {
+      max-width: 800px;
+    }
+    .card {
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+    .card:hover {
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05), 0 4px 6px rgba(0, 0, 0, 0.05);
+    }
+    .btn-translate {
+      background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+      transition: all 0.3s ease;
+    }
+    .btn-translate:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+    }
+    .btn-swap {
+      transition: all 0.3s ease;
+    }
+    .btn-swap:hover {
+      transform: rotate(180deg);
+    }
+    .input-lang {
+      font-family: 'Noto Sans', sans-serif;
+    }
+    select, textarea {
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+    select:focus, textarea:focus {
+      border-color: #6366f1;
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+      outline: none;
+    }
+    .language-label {
+      color: #4f46e5;
+    }
+    .warning {
+      background-color: #fff3cd;
+      color: #856404;
+      border-left: 4px solid #ffc107;
+      border-radius: 4px;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      display: none;
+    }
+    .loading-dots span {
+      animation-name: loading;
+      animation-duration: 1.4s;
+      animation-iteration-count: infinite;
+      animation-fill-mode: both;
+    }
+    .loading-dots span:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+    .loading-dots span:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+    @keyframes loading {
+      0% {
+        opacity: 0.2;
+      }
+      20% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0.2;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="min-h-screen py-8 px-4">
+    <div class="container mx-auto">
+      <header class="text-center mb-10">
+        <h1 class="text-3xl md:text-4xl font-semibold text-gray-800">Indian Language ↔ English Translator</h1>
+        <p class="text-gray-600 mt-2">Translate between Hindi, Tamil, Malayalam, Kannada, Telugu and English</p>
+      </header>
+      
+      <div class="card p-6 md:p-8">
+        <!-- Warning message for same language selection -->
+        <div id="warning-message" class="warning">
+          <p>⚠️ You've selected the same language for both source and target. Please choose different languages.</p>
+        </div>
+        
+        <!-- Language selection section -->
+        <div class="flex flex-col md:flex-row mb-6 items-center">
+          <div class="w-full md:w-2/5">
+            <label for="from-language" class="block text-sm font-medium text-gray-700 mb-2">Translate From</label>
+            <select id="from-language" class="w-full p-3 text-gray-700 bg-white">
+              <option value="english">English</option>
+              <option value="hindi">Hindi</option>
+              <option value="tamil">Tamil</option>
+              <option value="malayalam">Malayalam</option>
+              <option value="kannada">Kannada</option>
+              <option value="telugu">Telugu</option>
+            </select>
+          </div>
+          
+          <!-- Swap button -->
+          <div class="mx-4 my-4 md:my-0">
+            <button id="swap-languages" class="btn-swap bg-gray-100 hover:bg-gray-200 text-gray-600 p-3 rounded-full">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+              </svg>
+            </button>
+          </div>
+          
+          <div class="w-full md:w-2/5">
+            <label for="to-language" class="block text-sm font-medium text-gray-700 mb-2">Translate To</label>
+            <select id="to-language" class="w-full p-3 text-gray-700 bg-white">
+              <option value="english" selected>English</option>
+              <option value="hindi">Hindi</option>
+              <option value="tamil">Tamil</option>
+              <option value="malayalam">Malayalam</option>
+              <option value="kannada">Kannada</option>
+              <option value="telugu">Telugu</option>
+            </select>
+          </div>
+        </div>
+        
+        <!-- Input text area -->
+        <div class="mb-6">
+          <div class="flex justify-between mb-2">
+            <label for="input-text" class="block text-sm font-medium text-gray-700">Enter Text</label>
+            <span class="text-xs text-gray-500 language-label" id="selected-from-language">English</span>
+          </div>
+          <textarea id="input-text" rows="5" class="w-full p-3 text-gray-700 input-lang" placeholder="Type or paste text here..."></textarea>
+        </div>
+        
+        <!-- Translate button -->
+        <div class="flex justify-center mb-6">
+          <button id="translate-btn" class="btn-translate text-white py-3 px-8 rounded-lg font-medium">
+            Translate
+          </button>
+        </div>
+        
+        <!-- Output text area -->
+        <div>
+          <div class="flex justify-between mb-2">
+            <label for="output-text" class="block text-sm font-medium text-gray-700">Translation</label>
+            <span class="text-xs text-gray-500 language-label" id="selected-to-language">English</span>
+          </div>
+          <textarea id="output-text" rows="5" class="w-full p-3 text-gray-700 bg-gray-50 input-lang" placeholder="Translation will appear here..." readonly></textarea>
+        </div>
+      </div>
+      
+      <footer class="mt-8 text-center text-sm text-gray-500">
+        <p>© 2025 Indian Language Translator</p>
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    // Get DOM elements
+    const fromLanguageSelect = document.getElementById('from-language');
+    const toLanguageSelect = document.getElementById('to-language');
+    const selectedFromLanguage = document.getElementById('selected-from-language');
+    const selectedToLanguage = document.getElementById('selected-to-language');
+    const swapButton = document.getElementById('swap-languages');
+    const translateBtn = document.getElementById('translate-btn');
+    const inputText = document.getElementById('input-text');
+    const outputText = document.getElementById('output-text');
+    const warningMessage = document.getElementById('warning-message');
+    
+    // Translation database (simulated API data)
+    const translationDatabase = {
+      // English phrases and their translations
+      english: {
+        "hello": {
+          hindi: "नमस्ते",
+          tamil: "வணக்கம்",
+          malayalam: "ഹലോ",
+          kannada: "ಹಲೋ",
+          telugu: "హలో"
+        },
+        "good morning": {
+          hindi: "शुभ प्रभात",
+          tamil: "காலை வணக்கம்",
+          malayalam: "സുപ്രഭാതം",
+          kannada: "ಶುಭೋದಯ",
+          telugu: "శుభోదయం"
+        },
+        "how are you": {
+          hindi: "आप कैसे हैं",
+          tamil: "நீங்கள் எப்படி இருக்கிறீர்கள்",
+          malayalam: "സുഖമാണോ",
+          kannada: "ನೀವು ಹೇಗಿದ್ದೀರಿ",
+          telugu: "మీరు ఎలా ఉన్నారు"
+        },
+        "thank you": {
+          hindi: "धन्यवाद",
+          tamil: "நன்றி",
+          malayalam: "നന്ദി",
+          kannada: "ಧನ್ಯವಾದಗಳು",
+          telugu: "ధన్యవాదాలు"
+        },
+        "welcome": {
+          hindi: "स्वागत है",
+          tamil: "வரவேற்கிறோம்",
+          malayalam: "സ്വാഗതം",
+          kannada: "ಸುಸ್ವಾಗತ",
+          telugu: "స్వాగతం"
+        },
+        "my name is": {
+          hindi: "मेरा नाम है",
+          tamil: "என் பெயர்",
+          malayalam: "എന്റെ പേര്",
+          kannada: "ನನ್ನ ಹೆಸರು",
+          telugu: "నా పేరు"
+        },
+        "what is your name": {
+          hindi: "आपका नाम क्या है",
+          tamil: "உங்கள் பெயர் என்ன",
+          malayalam: "നിങ്ങളുടെ പേര് എന്താണ്",
+          kannada: "ನಿಮ್ಮ ಹೆಸರೇನು",
+          telugu: "మీ పేరు ఏమిటి"
+        },
+        "i love india": {
+          hindi: "मुझे भारत से प्यार है",
+          tamil: "எனக்கு இந்தியா மீது அன்பு",
+          malayalam: "ഞാൻ ഇന്ത്യയെ സ്നേഹിക്കുന്നു",
+          kannada: "ನನಗೆ ಭಾರತ ಇಷ್ಟ",
+          telugu: "నేను భారతదేశాన్ని ప్రేమిస్తున్నాను"
+        },
+        "where are you from": {
+          hindi: "आप कहां से हैं",
+          tamil: "நீங்கள் எங்கிருந்து வருகிறீர்கள்",
+          malayalam: "നിങ്ങൾ എവിടെ നിന്നാണ്",
+          kannada: "ನೀವು ಎಲ್ಲಿಂದ ಬಂದಿದ್ದೀರಿ",
+          telugu: "మీరు ఎక్కడి నుండి వచ్చారు"
+        },
+        "i don't understand": {
+          hindi: "मैं समझ नहीं पा रहा हूं",
+          tamil: "எனக்கு புரியவில்லை",
+          malayalam: "എനിക്ക് മനസ്സിലാകുന്നില്ല",
+          kannada: "ನನಗೆ ಅರ್ಥವಾಗುತ್ತಿಲ್ಲ",
+          telugu: "నాకు అర్థం కాలేదు"
+        }
+      },
+      // Hindi phrases and their translations
+      hindi: {
+        "नमस्ते": {
+          english: "hello",
+          tamil: "வணக்கம்",
+          malayalam: "ഹലോ",
+          kannada: "ಹಲೋ",
+          telugu: "హలో"
+        },
+        "शुभ प्रभात": {
+          english: "good morning",
+          tamil: "காலை வணக்கம்",
+          malayalam: "സുപ്രഭാതം",
+          kannada: "ಶುಭೋದಯ",
+          telugu: "శుభోదయం"
+        },
+        "आप कैसे हैं": {
+          english: "how are you",
+          tamil: "நீங்கள் எப்படி இருக்கிறீர்கள்",
+          malayalam: "സുഖമാണോ",
+          kannada: "ನೀವು ಹೇಗಿದ್ದೀರಿ",
+          telugu: "మీరు ఎలా ఉన్నారు"
+        },
+        "धन्यवाद": {
+          english: "thank you",
+          tamil: "நன்றி",
+          malayalam: "നന്ദി",
+          kannada: "ಧನ್ಯವಾದಗಳು",
+          telugu: "ధన్యవాదాలు"
+        }
+      },
+      // Tamil phrases and their translations
+      tamil: {
+        "வணக்கம்": {
+          english: "hello",
+          hindi: "नमस्ते",
+          malayalam: "ഹലോ",
+          kannada: "ಹಲೋ",
+          telugu: "హలో"
+        },
+        "நன்றி": {
+          english: "thank you",
+          hindi: "धन्यवाद",
+          malayalam: "നന്ദി",
+          kannada: "ಧನ್ಯವಾದಗಳು",
+          telugu: "ధన్యవాదాలు"
+        }
+      },
+      // Malayalam phrases and their translations
+      malayalam: {
+        "ഹലോ": {
+          english: "hello",
+          hindi: "नमस्ते",
+          tamil: "வணக்கம்",
+          kannada: "ಹಲೋ",
+          telugu: "హలో"
+        },
+        "നന്ദി": {
+          english: "thank you",
+          hindi: "धन्यवाद",
+          tamil: "நன்றி",
+          kannada: "ಧನ್ಯವಾದಗಳು",
+          telugu: "ధన్యవాదాలు"
+        }
+      },
+      // Kannada phrases and their translations
+      kannada: {
+        "ಹಲೋ": {
+          english: "hello",
+          hindi: "नमस्ते",
+          tamil: "வணக்கம்",
+          malayalam: "ഹലോ",
+          telugu: "హలో"
+        },
+        "ಧನ್ಯವಾದಗಳು": {
+          english: "thank you",
+          hindi: "धन्यवाद",
+          tamil: "நன்றி",
+          malayalam: "നന്ദി",
+          telugu: "ధన్యవాదాలు"
+        }
+      },
+      // Telugu phrases and their translations
+      telugu: {
+        "హలో": {
+          english: "hello",
+          hindi: "नमस्ते",
+          tamil: "வணக்கம்",
+          malayalam: "ഹലോ",
+          kannada: "ಹಲೋ"
+        },
+        "ధన్యవాదాలు": {
+          english: "thank you",
+          hindi: "धन्यवाद",
+          tamil: "நன்றி",
+          malayalam: "നന്ദി",
+          kannada: "ಧನ್ಯವಾದಗಳು"
+        }
+      }
+    };
+    
+    // Update language labels when selections change
+    fromLanguageSelect.addEventListener('change', updateLanguageLabels);
+    toLanguageSelect.addEventListener('change', updateLanguageLabels);
+    
+    // Function to update language labels and check for warnings
+    function updateLanguageLabels() {
+      selectedFromLanguage.textContent = fromLanguageSelect.options[fromLanguageSelect.selectedIndex].text;
+      selectedToLanguage.textContent = toLanguageSelect.options[toLanguageSelect.selectedIndex].text;
+      
+      // Check if same language is selected for both options
+      if (fromLanguageSelect.value === toLanguageSelect.value) {
+        warningMessage.style.display = 'block';
+        translateBtn.disabled = true;
+        translateBtn.classList.add('opacity-50');
+      } else {
+        warningMessage.style.display = 'none';
+        translateBtn.disabled = false;
+        translateBtn.classList.remove('opacity-50');
+      }
+    }
+    
+    // Swap languages functionality
+    swapButton.addEventListener('click', function() {
+      const fromValue = fromLanguageSelect.value;
+      const toValue = toLanguageSelect.value;
+      
+      fromLanguageSelect.value = toValue;
+      toLanguageSelect.value = fromValue;
+      
+      // Also swap the text content if there's anything translated
+      const inputValue = inputText.value;
+      inputText.value = outputText.value;
+      outputText.value = inputValue;
+      
+      // Update labels after swap
+      updateLanguageLabels();
+    });
+    
+    // Translation API function (simulated)
+    function translateText(text, fromLang, toLang) {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          // Convert text to lowercase for case-insensitive matching
+          const lowerText = text.toLowerCase().trim();
+          
+          // Check if the text exists in our translation database
+          if (translationDatabase[fromLang] && 
+              translationDatabase[fromLang][lowerText] && 
+              translationDatabase[fromLang][lowerText][toLang]) {
+            resolve(translationDatabase[fromLang][lowerText][toLang]);
+          } else {
+            // Try to match the beginning of phrases
+            for (const phrase in translationDatabase[fromLang]) {
+              if (lowerText.includes(phrase.toLowerCase())) {
+                if (translationDatabase[fromLang][phrase][toLang]) {
+                  resolve(translationDatabase[fromLang][phrase][toLang]);
+                  return;
+                }
+              }
+            }
+            
+            // If no direct match is found
+            resolve(`[Translation not found for "${text}" from ${fromLang} to ${toLang}. Try one of these phrases: ${Object.keys(translationDatabase[fromLang] || {}).join(", ")}]`);
+          }
+        }, 1000); // Simulate API delay
+      });
+    }
+    
+    // Handle translation
+    translateBtn.addEventListener('click', async function() {
+      if (inputText.value.trim() === '') {
+        outputText.value = 'Please enter some text to translate.';
+        return;
+      }
+      
+      const fromLang = fromLanguageSelect.value;
+      const toLang = toLanguageSelect.value;
+      
+      // Show loading state
+      const originalBtnText = translateBtn.textContent;
+      translateBtn.innerHTML = 'Translating<span class="loading-dots"><span>.</span><span>.</span><span>.</span></span>';
+      translateBtn.disabled = true;
+      
+      try {
+        // Call our simulated translation API
+        const translatedText = await translateText(inputText.value, fromLang, toLang);
+        outputText.value = translatedText;
+      } catch (error) {
+        outputText.value = "Translation error occurred. Please try again.";
+        console.error("Translation error:", error);
+      } finally {
+        // Restore button state
+        translateBtn.innerHTML = originalBtnText;
+        translateBtn.disabled = false;
+      }
+    });
+    
+    // Initial sample phrases based on selected language
+    function updateSamplePhrases() {
+      const fromLang = fromLanguageSelect.value;
+      let placeholder = "Type or paste text here...";
+      
+      if (fromLang === 'english') {
+        placeholder += "\n\nTry these phrases: hello, thank you, good morning, how are you";
+      } else if (fromLang === 'hindi') {
+        placeholder += "\n\nTry these phrases: नमस्ते, धन्यवाद";
+      } else if (fromLang === 'tamil') {
+        placeholder += "\n\nTry these phrases: வணக்கம், நன்றி";
+      } else if (fromLang === 'malayalam') {
+        placeholder += "\n\nTry these phrases: ഹലോ, നന്ദി";
+      } else if (fromLang === 'kannada') {
+        placeholder += "\n\nTry these phrases: ಹಲೋ, ಧನ್ಯವಾದಗಳು";
+      } else if (fromLang === 'telugu') {
+        placeholder += "\n\nTry these phrases: హలో, ధన్యవాదాలు";
+      }
+      
+      inputText.placeholder = placeholder;
+    }
+    
+    // Update sample phrases when language changes
+    fromLanguageSelect.addEventListener('change', updateSamplePhrases);
+    
+    // Initial setup
+    updateLanguageLabels();
+    updateSamplePhrases();
+  </script>
+</body>
+</html>

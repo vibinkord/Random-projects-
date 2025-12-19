@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian Menu QR Code</title>
+    <!-- Include QR Code generator library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+            margin: 0;
+        }
+
+        h1, h2, h3 {
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        #qr-code {
+            margin: 20px 0;
+        }
+
+        .menu-section {
+            margin-bottom: 40px;
+        }
+
+        .menu-item {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-item h3 {
+            margin: 0;
+        }
+
+        .menu-item p {
+            margin: 5px 0;
+        }
+
+        .price {
+            color: green;
+            font-weight: bold;
+        }
+
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Scan the QR Code to View Our Indian Menu</h1>
+        <p>Use your phone's camera or QR code scanner to view the menu.</p>
+
+        <!-- QR Code Display -->
+        <canvas id="qr-code"></canvas>
+
+        <h2>Or View the Menu Here</h2>
+
+        <!-- Indian Hotel Menu -->
+        <div id="menu-container">
+            <!-- Appetizers -->
+            <div class="menu-section">
+                <h3>Appetizers</h3>
+                <div class="menu-item">
+                    <h4>Samosa</h4>
+                    <p>Crispy fried pastry filled with spiced potatoes and peas.</p>
+                    <span class="price">₹50</span>
+                </div>
+
+                <div class="menu-item">
+                    <h4>Papdi Chaat</h4>
+                    <p>Fried dough wafers served with yogurt, chutney, and spices.</p>
+                    <span class="price">₹80</span>
+                </div>
+            </div>
+
+            <!-- Main Course -->
+            <div class="menu-section">
+                <h3>Main Course</h3>
+                <div class="menu-item">
+                    <h4>Butter Chicken</h4>
+                    <p>Rich and creamy tomato-based chicken curry served with naan.</p>
+                    <span class="price">₹250</span>
+                </div>
+
+                <div class="menu-item">
+                    <h4>Paneer Butter Masala</h4>
+                    <p>Cottage cheese cooked in a smooth and buttery tomato gravy.</p>
+                    <span class="price">₹220</span>
+                </div>
+
+                <div class="menu-item">
+                    <h4>Biryani</h4>
+                    <p>Fragrant basmati rice cooked with spices and choice of chicken or vegetables.</p>
+                    <span class="price">₹180</span>
+                </div>
+            </div>
+
+            <!-- Desserts -->
+            <div class="menu-section">
+                <h3>Desserts</h3>
+                <div class="menu-item">
+                    <h4>Gulab Jamun</h4>
+                    <p>Soft milk-solid balls soaked in rose-flavored sugar syrup.</p>
+                    <span class="price">₹50</span>
+                </div>
+
+                <div class="menu-item">
+                    <h4>Kulfi</h4>
+                    <p>Traditional Indian ice cream with saffron and pistachios.</p>
+                    <span class="price">₹60</span>
+                </div>
+            </div>
+
+            <!-- Beverages -->
+            <div class="menu-section">
+                <h3>Beverages</h3>
+                <div class="menu-item">
+                    <h4>Masala Chai</h4>
+                    <p>Traditional Indian tea brewed with aromatic spices and milk.</p>
+                    <span class="price">₹30</span>
+                </div>
+
+                <div class="menu-item">
+                    <h4>Mango Lassi</h4>
+                    <p>Sweetened yogurt drink blended with fresh mango pulp.</p>
+                    <span class="price">₹70</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>Powered by YourHotel | Enjoy Your Meal!</p>
+        </footer>
+    </div>
+
+    <!-- Script to Generate QR Code -->
+    <script>
+        // Generate a QR Code that links to the Indian menu
+        var qr = new QRious({
+            element: document.getElementById('qr-code'),
+            value: 'https://yourhotel.com/indian-menu', // Replace with the actual URL
+            size: 200
+        });
+    </script>
+
+</body>
+</html>
