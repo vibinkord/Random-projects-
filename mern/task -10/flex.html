@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Flexbox Layout</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .flex-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      gap: 20px;
+    }
+
+    .flex-item {
+      background-color: #007BFF;
+      color: white;
+      padding: 40px;
+      flex: 1 1 200px;
+      text-align: center;
+      font-size: 1.5rem;
+      border-radius: 8px;
+    }
+    .flex-item :hover{
+     background-color: #ffffff;
+      transform: scale(1.05)
+    }
+  </style>
+</head>
+<body>
+  <h1>Responsive Flexbox Layout</h1>
+  <div class="flex-container">
+    <div class="flex-item">Item 1</div>
+    <div class="flex-item">Item 2</div>
+    <div class="flex-item">Item 3</div>
+    <div class="flex-item">Item 4</div>
+  </div>
+</body>
+</html>

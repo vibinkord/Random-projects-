@@ -1,0 +1,18 @@
+body{
+    background-color: black;
+    color: white;
+    text-align: center;
+    align-items: center;
+    margin-top: 10%;
+}
+
+img{
+    border: 5px solid ;
+}
+
+
+
+
+h1{
+    text-transform: uppercase;
+}

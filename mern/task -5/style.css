@@ -1,0 +1,52 @@
+.main{
+    padding: 20px 40px;
+
+}
+body{
+    font-family: "Poppins", sans-serif;
+}
+.nav{
+    color:orange;
+}
+
+.titel {
+    font-size: 35px;
+    font: bold;
+}
+
+.titel span {
+    color: darkblue;
+}
+
+.content {
+    display: flex;
+    gap: 40px;
+}
+
+.content .item {
+    width: 50%;
+    display: flex;
+    gap:40px ;
+    justify-content: center;
+    align-items: center;
+}
+.item p{
+    width: 80%;
+}
+
+.item img{
+    width: 250px;
+    height: 210px;
+    object-fit: cover;
+}
+
+
+.footer{
+    font-size: 13px;
+    font:normal;
+
+}
+
+footer{
+    margin-top: 110px;
+}

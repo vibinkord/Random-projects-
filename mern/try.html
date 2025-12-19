@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Product Showcase</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      transition: background-color 0.3s;
+    }
+
+    h1 {
+      text-align: center;
+      padding: 20px;
+      font-size: 2.5rem;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 30px;
+    }
+
+    .card {
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    .card h3 {
+      margin-top: 10px;
+      font-size: 1.2rem;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    /* Media Query for screens ≤ 900px */
+    @media (max-width: 900px) {
+      body {
+        background-color: #e8f0fe; /* Light blue */
+      }
+      h1 {
+        font-size: 2.2rem;
+      }
+    }
+
+    /* Media Query for screens ≤ 600px */
+    @media (max-width: 600px) {
+      body {
+        background-color: #ffe4e1; /* Light pink */
+      }
+      h1 {
+        font-size: 1.8rem;
+        text-align: left;
+        padding-left: 20px;
+      }
+      .card p {
+        font-size: 0.9rem;
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Product Showcase</h1>
+
+  <div class="grid-container">
+    <div class="card">
+      <img src="https://via.placeholder.com/250x180?text=Product+1" alt="Product 1">
+      <h3>Product One</h3>
+      <p>High quality and affordable product perfect for daily use.</p>
+    </div>
+    <div class="card">
+      <img src="https://via.placeholder.com/250x180?text=Product+2" alt="Product 2">
+      <h3>Product Two</h3>
+      <p>Elegant design and great performance at a great price.</p>
+    </div>
+    <div class="card">
+      <img src="https://via.placeholder.com/250x180?text=Product+3" alt="Product 3">
+      <h3>Product Three</h3>
+      <p>Compact and versatile with modern features.</p>
+    </div>
+    <div class="card">
+      <img src="https://via.placeholder.com/250x180?text=Product+4" alt="Product 4">
+      <h3>Product Four</h3>
+      <p>Best in class reliability and customer satisfaction.</p>
+    </div>
+  </div>
+
+</body>
+</html>
